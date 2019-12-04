@@ -1,0 +1,39 @@
+﻿@model IEnumerable<NJServices_Demo.Models.dept>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.dname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.loc)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.dname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.loc)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.deptno }) |
+            @Html.ActionLink("Details", "Details", new { id=item.deptno }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.deptno })
+        </td>
+    </tr>
+}
+
+</table>

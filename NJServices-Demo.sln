@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29318.209
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NJServices-Demo", "NJServices-Demo.csproj", "{470BE164-2959-48FC-8596-2E4D1653BFAE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{470BE164-2959-48FC-8596-2E4D1653BFAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{470BE164-2959-48FC-8596-2E4D1653BFAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{470BE164-2959-48FC-8596-2E4D1653BFAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{470BE164-2959-48FC-8596-2E4D1653BFAE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F2B05D1D-5403-4D67-806E-B20624D09D68}
+	EndGlobalSection
+EndGlobal

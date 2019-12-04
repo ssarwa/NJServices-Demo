@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="njdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="dept">
+          <Key>
+            <PropertyRef Name="deptno" />
+          </Key>
+          <Property Name="deptno" Type="int" Nullable="false" />
+          <Property Name="dname" Type="varchar" MaxLength="14" />
+          <Property Name="loc" Type="varchar" MaxLength="13" />
+        </EntityType>
+        <EntityType Name="emp">
+          <Key>
+            <PropertyRef Name="empno" />
+          </Key>
+          <Property Name="empno" Type="int" Nullable="false" />
+          <Property Name="ename" Type="varchar" MaxLength="10" />
+          <Property Name="job" Type="varchar" MaxLength="9" />
+          <Property Name="mgr" Type="int" />
+          <Property Name="hiredate" Type="date" />
+          <Property Name="sal" Type="int" />
+          <Property Name="comm" Type="int" />
+          <Property Name="deptno" Type="int" />
+        </EntityType>
+        <Association Name="fk_deptno">
+          <End Role="dept" Type="Self.dept" Multiplicity="0..1" />
+          <End Role="emp" Type="Self.emp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dept">
+              <PropertyRef Name="deptno" />
+            </Principal>
+            <Dependent Role="emp">
+              <PropertyRef Name="deptno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="njdbModelStoreContainer">
+          <EntitySet Name="dept" EntityType="Self.dept" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="emp" EntityType="Self.emp" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_deptno" Association="Self.fk_deptno">
+            <End Role="dept" EntitySet="dept" />
+            <End Role="emp" EntitySet="emp" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="njdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="dept">
+          <Key>
+            <PropertyRef Name="deptno" />
+          </Key>
+          <Property Name="deptno" Type="Int32" Nullable="false" />
+          <Property Name="dname" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+          <Property Name="loc" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="emps" Relationship="Self.fk_deptno" FromRole="dept" ToRole="emp" />
+        </EntityType>
+        <EntityType Name="emp">
+          <Key>
+            <PropertyRef Name="empno" />
+          </Key>
+          <Property Name="empno" Type="Int32" Nullable="false" />
+          <Property Name="ename" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="job" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="mgr" Type="Int32" />
+          <Property Name="hiredate" Type="DateTime" Precision="0" />
+          <Property Name="sal" Type="Int32" />
+          <Property Name="comm" Type="Int32" />
+          <Property Name="deptno" Type="Int32" />
+          <NavigationProperty Name="dept" Relationship="Self.fk_deptno" FromRole="emp" ToRole="dept" />
+        </EntityType>
+        <Association Name="fk_deptno">
+          <End Role="dept" Type="Self.dept" Multiplicity="0..1" />
+          <End Role="emp" Type="Self.emp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dept">
+              <PropertyRef Name="deptno" />
+            </Principal>
+            <Dependent Role="emp">
+              <PropertyRef Name="deptno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="njdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="depts" EntityType="Self.dept" />
+          <EntitySet Name="emps" EntityType="Self.emp" />
+          <AssociationSet Name="fk_deptno" Association="Self.fk_deptno">
+            <End Role="dept" EntitySet="depts" />
+            <End Role="emp" EntitySet="emps" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="njdbModelStoreContainer" CdmEntityContainer="njdbEntities">
+          <EntitySetMapping Name="depts">
+            <EntityTypeMapping TypeName="njdbModel.dept">
+              <MappingFragment StoreEntitySet="dept">
+                <ScalarProperty Name="deptno" ColumnName="deptno" />
+                <ScalarProperty Name="dname" ColumnName="dname" />
+                <ScalarProperty Name="loc" ColumnName="loc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="emps">
+            <EntityTypeMapping TypeName="njdbModel.emp">
+              <MappingFragment StoreEntitySet="emp">
+                <ScalarProperty Name="empno" ColumnName="empno" />
+                <ScalarProperty Name="ename" ColumnName="ename" />
+                <ScalarProperty Name="job" ColumnName="job" />
+                <ScalarProperty Name="mgr" ColumnName="mgr" />
+                <ScalarProperty Name="hiredate" ColumnName="hiredate" />
+                <ScalarProperty Name="sal" ColumnName="sal" />
+                <ScalarProperty Name="comm" ColumnName="comm" />
+                <ScalarProperty Name="deptno" ColumnName="deptno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
